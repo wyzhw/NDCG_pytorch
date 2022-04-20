@@ -126,7 +126,8 @@ class Data(object):
         def normalized_adj_single(adj):
             rowsum = np.array(adj.sum(1)) # [row, sum()]
 
-            d_inv = np.power(rowsum, -.5).flatten() # 取-1/2：倒数开根号
+            # power -1/2：倒数开根号
+            d_inv = np.power(rowsum, -.5).flatten()
             d_inv[np.isinf(d_inv)] = 0.
             d_mat_inv = sp.diags(d_inv)
 

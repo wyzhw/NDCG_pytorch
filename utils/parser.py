@@ -10,8 +10,8 @@ def parse_args():
     parser.add_argument('--data_dir', type=str,
                         default='./data/',
                         help='Input data path.')
-    parser.add_argument('--dataset', type=str, default='ml-100k',
-                        help='Dataset name: Amazond-book, Gowella, ml-100k, 1k')
+    parser.add_argument('--dataset', type=str, default='rating',
+                        help='Dataset name: rating, ml-100k, 1k')
     parser.add_argument('--results_dir', type=str, default='results',
                         help='Store model to path.')
     parser.add_argument('--n_epochs', type=int, default=400,
@@ -36,5 +36,8 @@ def parse_args():
                         help='Evaluate every N epochs')
     parser.add_argument('--save_results', type=int, default=1,
                         help='Save model and results')
-
+    parser.add_argument('--threshold', type=float, default=3,
+                        help='Set the lower boundary ratting')
+    parser.add_argument('--sp', type=float, default=0.8,
+                        help='The percentage of split data')
     return parser.parse_args()

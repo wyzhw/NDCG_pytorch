@@ -1,6 +1,6 @@
 '''
 Run this file in terminal with arguments, per example:
->> run.py --dataset ml-100k --batch_size 512 --mess_dropout 0. --k 10
+>> run.py --batch_size 512 --mess_dropout 0. --k 10 --n_epochs 5 --threshold 2
 '''
 
 import pandas as pd
@@ -18,6 +18,7 @@ from utils.helper_functions import early_stopping,\
                                    split_matrix,\
                                    compute_ndcg_k,\
                                    eval_model
+from utils.datapreprocessing import create_data
 from ngcf import NGCF
 
 use_cuda = torch.cuda.is_available()
@@ -38,6 +39,11 @@ if __name__ == '__main__':
     mess_dropout = args.mess_dropout
     node_dropout = args.node_dropout
     k = args.k # 'k order of metric evaluation (e.g. NDCG@k)'
+    n = args.threshold
+    split_percentage = args.sp
+
+
+    create_data(n, split_percentage)
 
     # generate the NGCF-adjacency matrix
     data_generator = Data(path=data_dir + dataset, batch_size=batch_size)
